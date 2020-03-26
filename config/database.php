@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +34,18 @@ return [
     */
 
     'connections' => [
+
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => 'localhost',
+            'port' => 27017,
+            'database' => 'gymentry',
+            'username' => '',
+            'password' => '',
+            'options' => [
+                'database' => 'styde' // sets the authentication database required by mongo 3
+            ]
+        ],
 
         'sqlite' => [
             'driver' => 'sqlite',
