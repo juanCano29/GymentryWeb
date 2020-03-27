@@ -15,7 +15,7 @@ class prueba extends Controller
     }
     // consulta a mysql
     public function consulta2(){
-    	$user = DB::connection('mysql')->select('select * from prueba');
+    	$user = DB::connection('mysql')->select('select * from productos');
     	return $user;
     }
 }
