@@ -14,4 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ejemplo consulta a mongo
 Route::get('/prueba', 'prueba@consulta1');
+
+// ejemplo consulta a mysql
+Route::get('/prueba2', 'prueba@consulta2');
