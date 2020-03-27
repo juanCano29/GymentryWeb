@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    return view('base');
+});
 
 // ejemplo consulta a mongo
 Route::get('/prueba', 'prueba@consulta1');
