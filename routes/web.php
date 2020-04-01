@@ -23,3 +23,8 @@ Route::get('/prueba', 'prueba@consulta1');
 
 // ejemplo consulta a mysql
 Route::get('/prueba2', 'prueba@consulta2');
+
+Route::get('/clientes', function(){
+	return view('registro1');
+});
+Route::post('/registrarcliente', 'clientescontroller@guardarcliente');
