@@ -9,5 +9,6 @@ class Instructores extends Eloquent
 {
     protected $connection = 'mongodb';
     protected $collection = 'instructores';
+    public $timestamps = false;
     protected $guarded = [];
 }
