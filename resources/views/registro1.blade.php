@@ -39,7 +39,7 @@
 				<label>Fecha de Nacimiento:</label>
 				<input type="date" class="form-control mb-2" name="nacimiento" id="nacimiento" required>
 				<label>Identificacion:</label>
-				<input type="file" class="form-control-file border mb-2" id="identificador" name="identificador" required>
+				<input type="file" class="form-control-file border mb-2" id="identificador" name="identificador">
 				<label>Capital:</label>
 				<input type="text" class="form-control mb-2" name="capital" id="capital" placeholder="0.00" required>
 				<br>

@@ -28,3 +28,5 @@ Route::get('/clientes', function(){
 	return view('registro1');
 });
 Route::post('/registrarcliente', 'clientescontroller@guardarcliente');
+Route::get('/listaclientes', 'clientescontroller@clientes');
+Route::get('/clienteseleccionado/{id}', 'clientescontroller@clienteselec');
