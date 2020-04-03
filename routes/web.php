@@ -30,3 +30,5 @@ Route::get('/clientes', function(){
 Route::post('/registrarcliente', 'clientescontroller@guardarcliente');
 Route::get('/listaclientes', 'clientescontroller@clientes');
 Route::get('/clienteseleccionado/{id}', 'clientescontroller@clienteselec');
+Route::get('/actualizardireccion/{id}/{numero}', 'clientescontroller@actualizardire');
+Route::post('/actualizardir', 'clientescontroller@actdir');

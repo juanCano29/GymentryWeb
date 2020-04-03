@@ -44,7 +44,21 @@ class clientescontroller extends Controller
     function clienteselec($id){
         $todoelcliente = Clientes::find($id);
         $tipos_clientes = $todoelcliente->tipos_clientes;
-        // return curre($objeto);
         return view('modificarcliente', compact('todoelcliente', 'tipos_clientes'));
+    }
+
+    public function actualizardire($numero, $id)
+    {
+        $cliente = Clientes::find($id);
+        $direccion = $cliente->direccion;
+        $colonia = "";
+        $calle = "";
+        foreach ($direccion as $dir) {
+            if(end($dir)==$numero){
+                $colonia = reset($dir);
+                $calle = next($dir);
+            }
+        }
+        return view('actualizardireccion', compact('colonia','calle','numero'));
     }
 }

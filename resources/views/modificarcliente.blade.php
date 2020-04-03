@@ -15,25 +15,6 @@
 </head>
 <body>
 	<br>
-	<div class="modal" tabindex="-1" id="myModal" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<input type="text" id="textomodal" name="textomodal">
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="col-10 border">
@@ -68,7 +49,7 @@
 						<td>{{current($direccion)}}</td>
 						<td>{{next($direccion)}}</td>
 						<td>{{next($direccion)}}</td>
-						<td><button type="button" id="botondireccion" value="{{end($direccion)}}" class="btn btn-block btn-dark">EDITAR</button></td>
+						<td><a type="button" id="botondireccion" href="../actualizardireccion/{{end($direccion)}}/{{$todoelcliente->_id}}" class="btn btn-block btn-dark">EDITAR</a></td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -119,14 +100,5 @@
 	</div>
 </body>
 <script type="text/javascript">
-$(document).ready(function(){
-	var calle = 0;
-	$('button.btn-dark').click(function(){
-		calle = $('button.btn-dark').click(function(){}).val();
-		var direccion = '<?php echo json_encode($todoelcliente->direccion[0]) ?>';
-		console.log(direccion[0]);
-		$('#myModal').modal();
-	});
-});
 </script>
 </html>
