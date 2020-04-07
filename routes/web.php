@@ -32,3 +32,8 @@ Route::get('/listaclientes', 'clientescontroller@clientes');
 Route::get('/clienteseleccionado/{id}', 'clientescontroller@clienteselec');
 Route::get('/actualizardireccion/{id}/{numero}', 'clientescontroller@actualizardire');
 Route::post('/actualizardir', 'clientescontroller@actdir');
+
+
+// routes de productos 
+Route::get('/productos', 'controller@productos');
+Route::post('/registrarProducto', 'controller@reg_prod');
