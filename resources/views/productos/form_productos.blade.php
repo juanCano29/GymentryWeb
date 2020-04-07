@@ -12,6 +12,7 @@
         <style>
         </style>
     </head>
+    </head>
     <body>
         <br>
         <div align="center">
@@ -25,15 +26,16 @@
                <div class="card-header">Añadir Producto Nuevo</div>
                     <div class="card-body">
                     <br>
-                    <form>
+                    <form method="POST" action="{{url("/registrarProducto")}}">
                         <div class="form-group">
+                            {{csrf_field()}}
                             <label>Nombre de Producto</label>
-                            <input type="text" class="form-control" name="name_producto_nombre" id="id_producto_nombre">
+                            <input type="text" class="form-control" name="producto_nombre" id="producto_nombre">
                             <br>
                             <label for="comment">Precio</label>
-                            <input type="text" class="form-control" name="name_producto_precio" id="id_producto_precio"></input>
+                            <input type="text" class="form-control" name="producto_precio" id="producto_precio"></input>
                             <br>
-                            <button type="submit" class="btn btn-primary" name="name_button_crear_producto" id="id_button_crear_producto" >Crear Producto</button>
+                            <button type="submit" class="btn btn-primary" name="name_button_crear_producto" id="id_button_crear_producto" >Registrar Producto</button>
                         </div>
                     </form>
                 </div>
@@ -48,9 +50,10 @@
                     <form>
                         <div class="form-group">
                             <label>Producto</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>Toalla</option>
-                              <option>Powerade 1 litro</option>
+                            <select class="form-control" id="desc_select_prod">
+                                @foreach ($productos as $producto)
+                                    <option value="{{$producto->productos_id}}">{{$producto->nombre}}</option>
+                                @endforeach
                             </select>
                             <br>
                             <label for="comment">descuento</label>
@@ -77,18 +80,41 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Nombre Producto</th>
+                      <th style="min-width: 50%" scope="col">Nombre Producto</th>
                       <th scope="col">Ganancias</th>
-                      <th scope="col">Unidades vendidas</th>
-                      <th scope="col">Capital de desucnto</th>
+                      <th style="min-width: 15%" scope="col">Unidades vendidas</th>
                     </tr>
+                    
                   </thead>
                   <tbody>
-                    
+                    <?php
+                    foreach ($reportes as $reporte) {
+                        echo "<tr>";
+                            echo "<td>".$reporte->nombre."</td>";
+                            echo "<td>".($reporte->uni_vend) * ($reporte->precio) ."</td>";
+                            echo "<td>".$reporte->uni_vend."</td>"; 
+                        echo "</tr>";
+                    }
+                    ?>
+
+
                   </tbody>
                 </table>
             </div>
         </div>
     </body>
+    <script>
+    $(document).ready(function(){
 
+    }); 
+    $("#id_button_crear_producto").click(function(){
+        alert("se ha registrado el producto de manera exitosa");
+    }); 
+
+    $("#desc_select_prod").change(function(){
+        var id = $(this).val();
+        alert(id);
+    }); 
+
+</script>
 </html>
