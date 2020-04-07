@@ -21,7 +21,8 @@
 			<br>
 			<center><h2>Actualizar Dirección</h2></center>
 			<br>
-			<form method="POST" action="{{url("/actualizardir")}}">
+			<form method="POST" action="{{url("/actualizardir/?id=$id&numero=$numero")}}">
+				{{csrf_field()}}
 				<label>Colonia:</label>
 				<input type="text" class="form-control mb-2" name="colonia" id="colonia" value="{{$colonia}}" required>
 				<label>Calle:</label>
@@ -29,8 +30,8 @@
 				<label>Número:</label>
 				<input type="text" class="form-control mb-2" name="numero" id="numero" value="{{$numero}}" required>
 				<div class="row">
-					<div class="col-11"></div>
-					<button type="submit" class="btn btn-info mb-2">Guardar</button>
+					<div class="col-10"></div>
+					<button type="submit" class="btn btn-primary col-1 ml-5 mb-2 float-right">Guardar</button>
 				</div>
 			</form>
 		</div>
