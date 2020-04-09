@@ -18,14 +18,16 @@ class Controller extends BaseController
         $productos = DB::table('productos')
         ->select('productos_id','nombre')
         ->get();
+        // $productos = DB::connection('mysql')->select('select productos_id, nombre from productos');
 
         $reportes = DB::table('productos')
         ->join('orden_venta','orden_venta.productos_id','=','productos.productos_id')
         ->select('productos.nombre','productos.precio',DB::raw('(SUM(orden_venta.cantidad)) as uni_vend'))
         ->groupBy('productos.nombre','productos.precio')
         ->get();
+        // $reportes = DB::connection('mysql')->select('select productos.nombre, productos.precio, sum(orden_venta.cantidad) as uni_vend from productos inner join orden_venta on orden_venta.productos_id = productos.productos_id group by productos.nombre, productos.precio');
 
-        return view('form_productos',compact('productos','reportes','num_productos'));
+        return view('productos.form_productos',compact('productos','reportes','num_productos'));
     }
 
     function reg_prod(Request $p){
@@ -33,6 +35,7 @@ class Controller extends BaseController
         $prod_nombre = $p->producto_nombre;
         $prod_precio = $p->producto_precio;
         DB::insert('insert into productos (nombre,precio) values (?,?)', [$prod_nombre,$prod_precio] );
+        // DB::connection('mysql')->select('insert into productos(nombre, precio) values("'.$prod_nombre.'",'.$prod_precio.')');
         return back()->withErrors(['El producto se registro correctamente']);
     }
 }

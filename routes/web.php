@@ -32,6 +32,9 @@ Route::get('/listaclientes', 'clientescontroller@clientes');
 Route::get('/clienteseleccionado/{id}', 'clientescontroller@clienteselec');
 Route::get('/actualizardireccion/{id}/{numero}', 'clientescontroller@actualizardire');
 Route::post('/actualizardir', 'clientescontroller@actdir');
+Route::get('/actualizartelefono/{numero}/{id}', 'clientescontroller@actualizartelf');
+Route::post('/actualizartelf', 'clientescontroller@acttelf');
+Route::post('/actualizartodo', 'clientescontroller@actualizartodo');
 
 
 // routes de productos 
