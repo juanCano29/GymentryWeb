@@ -186,4 +186,9 @@ class clientescontroller extends Controller
         $clientes = Clientes::all();
         return view('clienteslista', compact('clientes'));
     }
+
+    function eliminarcliente($id){
+        Clientes::destroy($id);
+        return back();
+    }
 }

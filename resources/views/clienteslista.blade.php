@@ -30,6 +30,7 @@
 						<th scope="col">A PATERNO</th>
 						<th scope="col">A MATERNO</th>
 						<th scope="col"></th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody id="idbody">
@@ -39,7 +40,8 @@
 						<td>{{$cli->nombre}}</td>
 						<td>{{$cli->apaterno}}</td>
 						<td>{{$cli->amaterno}}</td>
-						<td><a type="button" class="btn btn-dark btn-block" href="/clienteseleccionado/{{$cli->_id}}">+</a></td>
+						<td><a type="button" class="btn btn-dark btn-block" href="/clienteseleccionado/{{$cli->_id}}">editar</a></td>
+						<td><a type="button" class="btn btn-dark btn-block" href="/eliminarcliente/{{$cli->_id}}">eliminar</a></td>
 					</tr>
 					@endforeach
 				</tbody>
