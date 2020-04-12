@@ -37,6 +37,11 @@ Route::post('/actualizartelf', 'clientescontroller@acttelf');
 Route::post('/actualizartodo', 'clientescontroller@actualizartodo');
 Route::get('/eliminarcliente/{id}', 'clientescontroller@eliminarcliente');
 
+Route::get('/instructures_registro', function(){
+	return view('registro_instructores');
+});
+Route::post('/registroinstructores', 'Instructorescontroller@registro_instructores');
+
 
 // routes de productos 
 Route::get('/productos', 'controller@productos');
