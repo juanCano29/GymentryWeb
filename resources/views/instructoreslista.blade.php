@@ -16,7 +16,7 @@
 <body>
 	<br>
 	<br>
-	<center><h3>Listado de clientes</h3></center>
+	<center><h3>Listado de instructores</h3></center>
 	<br>
 	<br>
 	<div class="row">
@@ -28,21 +28,19 @@
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">NOMBRE</th>
-						<th scope="col">A PATERNO</th>
-						<th scope="col">A MATERNO</th>
+						<th scope="col">ESPECIALIDAD</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody id="idbody">
-					@foreach($clientes as $cli)
+					@foreach($instructores as $inst)
 					<tr>
-						<td>{{$cli->_id}}</td>
-						<td>{{$cli->nombre}}</td>
-						<td>{{$cli->apaterno}}</td>
-						<td>{{$cli->amaterno}}</td>
-						<td><a type="button" class="btn btn-dark btn-block" href="/clienteseleccionado/{{$cli->_id}}">editar</a></td>
-						<td><a type="button" class="btn btn-dark btn-block" href="/eliminarcliente/{{$cli->_id}}">eliminar</a></td>
+						<td>{{$inst->_id}}</td>
+						<td>{{$inst->nombre_completo}}</td>
+						<td>{{$inst->especialidad}}</td>
+						<td><a type="button" class="btn btn-dark btn-block" href="/instructorseleccionado/{{$inst->_id}}">editar</a></td>
+						<td><a type="button" class="btn btn-dark btn-block" href="/#">eliminar</a></td>
 					</tr>
 					@endforeach
 				</tbody>

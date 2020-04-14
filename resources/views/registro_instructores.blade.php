@@ -14,6 +14,13 @@
 	<!-- Styles -->
 </head>
 <body>
+	@if($errors->any())
+	<center>
+		<div class="alert alert-info" role="alert">
+		  {{$errors->first()}}
+		</div>
+	</center>
+	@endif
 	<div class="row mt-5">
 		<div class="col-1"></div>
 		<div class="col-10 border">

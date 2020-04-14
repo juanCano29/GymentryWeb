@@ -41,6 +41,8 @@ Route::get('/instructures_registro', function(){
 	return view('registro_instructores');
 });
 Route::post('/registroinstructores', 'Instructorescontroller@registro_instructores');
+Route::get('/listainstructores', 'Instructorescontroller@listainstructores');
+Route::get('/instructorseleccionado/{id}', 'Instructorescontroller@instructselct');
 
 
 // routes de productos 
