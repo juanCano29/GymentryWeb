@@ -32,4 +32,95 @@ class Instructorescontroller extends Controller
     	$telefonos_array = $instructor->telefonos;
     	return view('modificarinstructor', compact('instructor','telefonos_array'));
     }
+    function actualizar(Request $r){
+    	$id = $_GET['id'];
+    	$instructor = Instructores::find($id);
+    	$arraytelefonos = $instructor->telefonos;
+    	$telefonos = reset($arraytelefonos);
+    	$celulares = end($arraytelefonos);
+    	if ($r->telefononuevo != null) {
+    		$arreglotelefonos = reset($arraytelefonos);
+    		for ($i=0; $i < count($arreglotelefonos)+1; $i++) { 
+    			if($i != count($arreglotelefonos)){
+    				$telefonos[$i] = $arreglotelefonos[$i];
+    			}
+    			else{
+    				$telefonos[$i] = $r->telefononuevo;
+    			}
+    		}
+    	}
+    	if ($r->celularnuevo != null) {
+    		$arreglocelulares = end($arraytelefonos);
+    		for ($i=0; $i < count($arreglocelulares)+1; $i++) { 
+    			if ($i != count($arreglocelulares)) {
+    				$celulares[$i] = $arreglocelulares[$i];
+    			}else{
+    				$celulares[$i] = $r->celularnuevo;
+    			}
+    		}
+    	}
+    	$arraytelefonos = array('telefonos' => $telefonos, 'celulares' => $celulares);
+    	$instructor->nombre_completo = $r->nombre;
+    	$instructor->especialidad = $r->especialidad;
+    	$instructor->coste = $r->coste;
+    	$instructor->telefonos = $arraytelefonos;
+    	$instructor->horario = $r->horario;
+    	$instructor->sueldo_mensual = $r->sueldo;
+    	$instructor->fecha_contrato = $r->fecha;
+    	$instructor->save();
+    	$instructores = Instructores::all();
+    	return view('instructoreslista',compact('instructores'));
+    }
+    function actualizartelefonos($id,$numero,$tipo){
+    	return view('actualizartelfonoinstructor', compact('id','numero','tipo'));
+    }
+    function telefonoactualizado(Request $r){
+    	$instructor = Instructores::find($r->id);
+	    $arraytelefonos = $instructor->telefonos;
+	    $arreglotelefonos = reset($arraytelefonos);
+	    $arreglocelulares = end($arraytelefonos);
+	    $telefonos = $arreglotelefonos;
+	    $celulares = $arreglocelulares;
+	    if ($r->numerocambiar != null) {
+	    	if ($r->tipo == 't') {
+		    	for ($i=0; $i < count($arreglotelefonos); $i++) { 
+		    		if ($arreglotelefonos[$i] != $r->numero) {
+		    			$telefonos[$i] = $arreglotelefonos[$i];
+		    		}else{
+		    			$telefonos[$i] = $r->numerocambiar;
+		    		}
+		    	}
+	    	}elseif ($r->tipo == 'c') {
+	    		for ($i=0; $i < count($arreglocelulares); $i++) { 
+	    			if ($arreglocelulares[$i] != $r->numero) {
+	    				$celulares[$i] = $arreglocelulares[$i];
+	    			}else{
+	    				$celulares[$i] = $r->numerocambiar;
+	    			}
+	    		}
+	    	}
+	    }else{
+	    	if ($r->tipo == 't') {
+	    		$telefonos = [];
+		    	for ($i=0; $i < count($arreglotelefonos); $i++) { 
+		    		if ($arreglotelefonos[$i] != $r->numero) {
+		    			$telefonos[$i] = $arreglotelefonos[$i];
+		    		}
+		    	}
+	    	}elseif ($r->tipo == 'c') {
+	    		$celulares = [];
+	    		for ($i=0; $i < count($arreglocelulares); $i++) { 
+	    			if ($arreglocelulares[$i] != $r->numero) {
+	    				$celulares[$i] = $arreglocelulares[$i];
+	    			}
+	    		}
+	    	}
+	    }
+    	$arraytelefonos = array('telefonos' => $telefonos, 'celulares' => $celulares);
+    	$instructor->telefonos = $arraytelefonos;
+    	$instructor->save();
+    	$instructor = Instructores::find($r->id);
+    	$telefonos_array = $instructor->telefonos;
+    	return view('modificarinstructor', compact('instructor','telefonos_array'));
+    }
 }

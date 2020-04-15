@@ -18,49 +18,52 @@
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="col-10 border">
-			<form method="POST" action="/#">
+			<form method="POST" action="{{url("/actualizarinstructor/?id=$instructor->_id")}}">
 				{{csrf_field()}}
 				<center><h2>Modificar Instructor</h2></center>
 				<br>
 				<label>Nombre completo:</label>
-				<input type="text" id="nombre" name="nombre" class="form-control mb-2" value="{{$instructor->nombre_completo}}">
+				<input type="text" id="nombre" name="nombre" class="form-control mb-2" value="{{$instructor->nombre_completo}}" required>
 				<label>Especialidad:</label>
 				<input type="text" id="especialidad" name="especialidad" class="form-control mb-2" value="{{$instructor->especialidad}}">
 				<label>Coste:</label>
-				<input type="text" id="coste" name="coste" class="form-control mb-2" value="{{$instructor->coste}}">
-				<hr>
+				<input type="text" id="coste" name="coste" class="form-control mb-2" value="{{$instructor->coste}}" required>
 				<center><h3>Teléfonos</h3></center>
-				<label>Teléfonos:</label>
-				@foreach(current($telefonos_array) as $tel)
-				<div class="row mb-2">
-					<div class="col-10">
-						<input type="text" id="telefono" name="telefono" class="form-control mb-2" value="{{$tel}}">
+				<div class="border">
+					<label>Teléfonos:</label>
+					@foreach(current($telefonos_array) as $tel)
+					<div class="row mb-2">
+						<div class="col-2"></div>
+						<div class="col-5">
+							<p>{{$tel}}</p>
+						</div>
+						<div class="col-1"></div>
+						<a type="button" id="guardartelefono" href="/telefonoinstructores/{{$instructor->_id}}/{{$tel}}/t" class="btn btn-dark col-1">Editar</a>
 					</div>
-					<div class="col-1"></div>
-					<a type="button" id="guardartelefono" href="#" class="btn btn-dark">Guardar</a>
-				</div>
-				@endforeach
-				<label>Celulares:</label>
-				@foreach(end($telefonos_array) as $cel)
-				<div class="row mb-2">
-					<div class="col-10">
-						<input type="text" id="celular" name="celular" class="form-control mb-2" value="{{$cel}}">
+					@endforeach
+					<label>Celulares:</label>
+					@foreach(end($telefonos_array) as $cel)
+					<div class="row mb-2">
+						<div class="col-2"></div>
+						<div class="col-5">
+							<p>{{$cel}}</p>
+						</div>
+						<div class="col-1"></div>
+						<a type="button" id="guardarcelular" href="/telefonoinstructores/{{$instructor->_id}}/{{$cel}}/c" class="btn btn-dark col-1">Editar</a>
 					</div>
-					<div class="col-1"></div>
-					<a type="button" id="guardarcelular" href="#" class="btn btn-dark">Guardar</a>
+					@endforeach
 				</div>
-				@endforeach
-				<hr>
 				<label>Nuevo Telefono:</label>
 				<input type="text" id="telefononuevo" name="telefononuevo" class="form-control mb-2" placeholder="14-123-12">
 				<label>Celular Nuevo:</label>
 				<input type="text" id="celularnuevo" name="celularnuevo" class="form-control mb-2" placeholder="451-123-32-34">
+				<hr>
 				<label>Horario:</label>
-				<input type="text" id="horario" name="horario" class="form-control mb-2" value="{{$instructor->horario}}">
+				<input type="text" id="horario" name="horario" class="form-control mb-2" value="{{$instructor->horario}}" required>
 				<label>Sueldo Mensual:</label>
-				<input type="text" id="sueldo" name="sueldo" class="form-control mb-2" value="{{$instructor->sueldo_mensual}}">
+				<input type="text" id="sueldo" name="sueldo" class="form-control mb-2" value="{{$instructor->sueldo_mensual}}" required>
 				<label>Fecha del Contrato:</label>
-				<input type="date" id="fecha" name="fecha" class="form-control mb-2" value="{{$instructor->fecha_contrato}}">
+				<input type="date" id="fecha" name="fecha" class="form-control mb-2" value="{{$instructor->fecha_contrato}}" required>
 				<button type="submit" class="btn btn-primary col-1 ml-5 mt-5 mb-2 float-right">Guardar</button>
 			</form>
 		</div>
