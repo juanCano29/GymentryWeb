@@ -123,4 +123,9 @@ class Instructorescontroller extends Controller
     	$telefonos_array = $instructor->telefonos;
     	return view('modificarinstructor', compact('instructor','telefonos_array'));
     }
+
+    function eliminarinstructor($id){
+    	Instructores::destroy($id);
+    	return back();
+    }
 }

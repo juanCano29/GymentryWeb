@@ -46,6 +46,7 @@ Route::get('/instructorseleccionado/{id}', 'Instructorescontroller@instructselct
 Route::post('/actualizarinstructor', 'Instructorescontroller@actualizar');
 Route::get('/telefonoinstructores/{id}/{numero}/{tipo}', 'Instructorescontroller@actualizartelefonos');
 Route::post('/telefonocambiado', 'Instructorescontroller@telefonoactualizado');
+Route::get('/eliminarinstructor/{id}', 'Instructorescontroller@eliminarinstructor');
 
 
 // routes de productos 

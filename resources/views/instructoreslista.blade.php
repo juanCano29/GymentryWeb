@@ -40,7 +40,7 @@
 						<td>{{$inst->nombre_completo}}</td>
 						<td>{{$inst->especialidad}}</td>
 						<td><a type="button" class="btn btn-dark btn-block" href="/instructorseleccionado/{{$inst->_id}}">editar</a></td>
-						<td><a type="button" class="btn btn-dark btn-block" href="/#">eliminar</a></td>
+						<td><a type="button" class="btn btn-dark btn-block" href="/eliminarinstructor/{{$inst->id}}">eliminar</a></td>
 					</tr>
 					@endforeach
 				</tbody>
