@@ -36,6 +36,9 @@ Route::get('/actualizartelefono/{numero}/{id}', 'clientescontroller@actualizarte
 Route::post('/actualizartelf', 'clientescontroller@acttelf');
 Route::post('/actualizartodo', 'clientescontroller@actualizartodo');
 Route::get('/eliminarcliente/{id}', 'clientescontroller@eliminarcliente');
+Route::get('/clientesdesinstruidos', 'clientescontroller@clientesnoinstruidos');
+Route::get('/listadoinstructores/{id}', 'clientescontroller@listadoinstructores');
+Route::get('/clientesinstructores/{cli}/{inst}', 'clientescontroller@instructorcliente');
 
 Route::get('/instructures_registro', function(){
 	return view('registro_instructores');

@@ -12,7 +12,22 @@ class Instructorescontroller extends Controller
     	$telefonos[0] = $r->telefono;
     	$celulares[0] = $r->celular;
     	$array_telefono = array('telefonos'=>$telefonos,'celulares'=>$celulares);
+    	$instructores2 = Instructores::all();
+    	$id = rand(1,999999999);
+        if(count($instructores2)>1){
+            $existe = true;
+            while ($existe) {
+                foreach ($instructores2 as $inst2) {
+                    $existe = false;
+                    if($inst2->_id == $id){
+                        $existe = true;
+                        $id = rand(1,999999999);
+                    }
+                }
+            }
+        }
     	$instructores = new Instructores();
+    	$instructores->idinstructores = $id; 
     	$instructores->nombre_completo = $r->nombre;
     	$instructores->especialidad = $r->especialidad;
     	$instructores->coste = $r->coste;

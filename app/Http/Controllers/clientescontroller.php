@@ -5,15 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Clientes;
 use Illuminate\Support\Facades\DB;
+use App\Instructores;
 
 class clientescontroller extends Controller
 {
     function guardarcliente(Request $r){
         $telefonos = [];
         $direcciones = [];
+        $clientes2 = Clientes::all();
+        $id = rand(1,999999999);
+        if(count($clientes2)>1){
+            $existe = true;
+            while ($existe) {
+                foreach ($clientes2 as $cli2) {
+                    $existe = false;
+                    if($cli2->_id == $id){
+                        $existe = true;
+                        $id = rand(1,999999999);
+                    }
+                }
+            }
+        }
     	$arraydireccion = array('colonia' => $r->colonia, 'calle' => $r->calle, 'numero' => $r->numero);
         $direcciones[0] = $arraydireccion;
 	    $client = new Clientes();
+        $client->idcliente = $id;
 	    $client->nombre= $r->nombre;
 	  	$client->apaterno= $r->apaterno;
 	    $client->amaterno = $r->amaterno;
@@ -190,5 +206,35 @@ class clientescontroller extends Controller
     function eliminarcliente($id){
         Clientes::destroy($id);
         return back();
+    }
+
+    function clientesnoinstruidos(){
+        $clientes = Clientes::all();
+        $sininstructor = [];
+        foreach ($clientes as $cli) {
+            if($cli->idinstructor == null){
+                array_push($sininstructor, $cli);
+            }
+        }
+        return view('sininstructor', compact('sininstructor'));
+    }
+
+    function listadoinstructores($id){
+        $instructores = Instructores::all();
+        return view('asignaciondeinstructores', compact('id','instructores'));
+    }
+
+    function instructorcliente($cli, $inst){
+        $cliente = Clientes::find($cli);
+        $cliente->idinstructor = $inst;
+        $cliente->save();
+        $clientes = Clientes::all();
+        $sininstructor = [];
+        foreach ($clientes as $cli) {
+            if($cli->idinstructor == null){
+                array_push($sininstructor, $cli);
+            }
+        }
+        return view('sininstructor', compact('sininstructor'));
     }
 }
