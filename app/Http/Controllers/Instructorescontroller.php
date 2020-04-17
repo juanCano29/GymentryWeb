@@ -26,6 +26,7 @@ class Instructorescontroller extends Controller
                 }
             }
         }
+        $id = "".$id;
     	$instructores = new Instructores();
     	$instructores->idinstructores = $id; 
     	$instructores->nombre_completo = $r->nombre;

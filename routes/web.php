@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('base');
 });
 Route::get('/home', function () {
     return view('base');
@@ -55,3 +55,5 @@ Route::get('/eliminarinstructor/{id}', 'Instructorescontroller@eliminarinstructo
 // routes de productos 
 Route::get('/productos', 'controller@productos');
 Route::post('/registrarProducto', 'controller@reg_prod');
+
+Route::get('/procedimiento', 'Instructorescontroller@pro');

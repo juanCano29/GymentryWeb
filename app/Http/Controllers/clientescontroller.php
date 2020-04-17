@@ -26,6 +26,7 @@ class clientescontroller extends Controller
                 }
             }
         }
+        $id = "".$id;
     	$arraydireccion = array('colonia' => $r->colonia, 'calle' => $r->calle, 'numero' => $r->numero);
         $direcciones[0] = $arraydireccion;
 	    $client = new Clientes();
