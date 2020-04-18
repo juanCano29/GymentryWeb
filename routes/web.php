@@ -50,6 +50,8 @@ Route::post('/actualizarinstructor', 'Instructorescontroller@actualizar');
 Route::get('/telefonoinstructores/{id}/{numero}/{tipo}', 'Instructorescontroller@actualizartelefonos');
 Route::post('/telefonocambiado', 'Instructorescontroller@telefonoactualizado');
 Route::get('/eliminarinstructor/{id}', 'Instructorescontroller@eliminarinstructor');
+Route::get('/asistenciainstructores', 'Instructorescontroller@asistenciainstructor');
+Route::get('/asistioinstructor/{id}', 'Instructorescontroller@asistidoinstructor');
 
 
 // routes de productos 

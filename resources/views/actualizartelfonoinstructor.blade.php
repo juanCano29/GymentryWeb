@@ -35,6 +35,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/instructures_registro">Registrar</a>
                   <a class="dropdown-item" href="/listainstructores">Editar / eliminar</a>
+                  <a class="dropdown-item" href="/asistenciainstructores">Asistencia</a>
                 </div>
               </li>
             </ul>

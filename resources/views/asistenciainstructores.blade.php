@@ -42,45 +42,48 @@
           </div>
         </nav>
 	<br>
-	<br>
-	<center><h3>Clientes Sin Instructores</h3></center>
-	<br>
-	<br>
 	<div class="row">
 		<div class="col-1"></div>
-		<div class="col-10">
-			<input type="text" class="form-control mb-3" name="buscador" id="idbuscador" placeholder="buscador">
+		<div class="col-10 border">
+			<br>
+			<center><h2>ASISTENCIA</h2></center>
+			<br>
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
-						<th scope="col">ID</th>
 						<th scope="col">NOMBRE</th>
 						<th scope="col">ESPECIALIDAD</th>
+						<th scope="col"><center>ASISTENCIA</center></th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
-				<tbody id="idbody">
+				<tbody>
 					@foreach($instructores as $inst)
 					<tr>
-						<td>{{$inst->_id}}</td>
 						<td>{{$inst->nombre_completo}}</td>
 						<td>{{$inst->especialidad}}</td>
-						<td><a type="button" class="btn btn-dark btn-block" href="/clientesinstructores/{{$id}}/{{$inst->idinstructores}}">Asignar</a></td>
+						<td>
+							<div class="row">
+								<div class="col-5 ml-3"></div>
+								<a href="/asistioinstructor/{{$inst->idinstructores}}" class="btn btn-success col-1"></a>
+							</div>
+						</td>
+						<td>
+							@if($inst->asistencia == true)
+							Presente
+							@endif
+							@if($inst->asistencia == false)
+							Ausente
+							@endif
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
 			</table>
+			<br>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('#idbuscador').on("keyup", function(){
-			var value = $(this).val().toLowerCase();
-			$("#idbody tr").filter(function(){
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-			});
-		});
-	});
 </script>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Instructores;
+use App\Asistencias_instructores;
 
 class Instructorescontroller extends Controller
 {
@@ -143,5 +144,64 @@ class Instructorescontroller extends Controller
     function eliminarinstructor($id){
     	Instructores::destroy($id);
     	return back();
+    }
+
+    function asistenciainstructor(){
+    	$instructores = Instructores::all();
+    	$fecha = getdate();
+    	$mes = $fecha['mon'];
+    	$dia = $fecha['mday'];
+    	if ($mes < 10) {
+    		$mes = "0".$mes;
+    	}
+    	if ($dia < 10) {
+    		$dia = "0".$dia;
+    	}
+    	$fechactual = $fecha['year']."-".$mes."-".$dia;
+    	$asistencia_instructores = Asistencias_instructores::all();
+    	for ($i=0; $i < count($instructores); $i++) { 
+    		$instructores[$i]->asistencia = false;
+    	}
+    	foreach ($asistencia_instructores as $asins) {
+    		if($asins->fecha == $fechactual){
+    			for ($i=0; $i < count($instructores); $i++) { 
+    				if($asins->idinstructores == $instructores[$i]->idinstructores){
+						$instructores[$i]->asistencia = true;
+    				}
+    			}
+    		}
+    	}
+    	return view('asistenciainstructores', compact('instructores'));
+    }
+    function asistidoinstructor($id){
+    	$asistencia = new Asistencias_instructores();
+    	$fecha = getdate();
+    	$mes = $fecha['mon'];
+    	$dia = $fecha['mday'];
+    	if ($mes < 10) {
+    		$mes = "0".$mes;
+    	}
+    	if ($dia < 10) {
+    		$dia = "0".$dia;
+    	}
+    	$fechactual = $fecha['year']."-".$mes."-".$dia;
+    	$asistencia->fecha = $fechactual;
+    	$asistencia->idinstructores = $id;
+    	$asistencia->save();
+    	$instructores = Instructores::all();
+    	$asistencia_instructores = Asistencias_instructores::all();
+    	for ($i=0; $i < count($instructores); $i++) { 
+    		$instructores[$i]->asistencia = false;
+    	}
+    	foreach ($asistencia_instructores as $asins) {
+    		if($asins->fecha == $fechactual){
+    			for ($i=0; $i < count($instructores); $i++) { 
+    				if($asins->idinstructores == $instructores[$i]->idinstructores){
+						$instructores[$i]->asistencia = true;
+    				}
+    			}
+    		}
+    	}
+    	return view('asistenciainstructores', compact('instructores'));
     }
 }
