@@ -58,4 +58,6 @@ Route::get('/asistioinstructor/{id}', 'Instructorescontroller@asistidoinstructor
 Route::get('/productos', 'controller@productos');
 Route::post('/registrarProducto', 'controller@reg_prod');
 
-Route::get('/procedimiento', 'Instructorescontroller@pro');
+Route::get('/ventaproductos', 'controller@venderproductos');
+Route::get('/ordenventa/{id}', 'controller@ordenventa');
+Route::post('/productovendido', 'controller@productovendido');
