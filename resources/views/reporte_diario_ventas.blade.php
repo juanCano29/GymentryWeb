@@ -54,65 +54,74 @@
         </nav>
 	<br>
 	<br>
-	<center><h3>Venta Productos</h3></center>
+	<center><h3>Reporte diario de ventas</h3></center>
 	<br>
 	<br>
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="col-10">
-			<form method="POST" action="{{url("/productovendido")}}">
-				{{csrf_field()}}
+			<div class="border">
+				<label class="mt-2 ml-2">Último reporte:</label>
 				<div class="row">
-					<label class="col-5">Producto:</label>
-					<div class="col-2"></div>
-					<label class="col-5">Precio:</label>
+					<div class="col-1"></div>
+					<table class="table col-10">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">id</th>
+								<th scope="col">ganancias</th>
+								<th scope="col">cantidad de productos vendidos</th>
+								<th scope="col">fecha</th>
+								<th scope="col">suma de descuentos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								@if($ultimoreporte)
+								<td>{{$ultimoreporte->reporte_ventas_id}}</td>
+								<td>{{$ultimoreporte->ganancias}}</td>
+								<td>{{$ultimoreporte->cantidad_productos}}</td>
+								<td>{{$ultimoreporte->fecha}}</td>
+								<td>{{$ultimoreporte->total_descuentos}}</td>
+								@endif
+							</tr>
+						</tbody>
+					</table>
 				</div>
-				<div class="row mb-2">
-					<input type="text" id="producto" name="producto" class="form-control col-4 ml-2" value="{{$producto->nombre}}" readonly>
-					<div class="col-3"></div>
-					<input type="text" id="precio" name="precio" class="form-control col-4" value="{{$producto->precio}}" readonly>
-				</div>
-				<label class="mt-5">Cantidad:</label>
-				<div class="row">
-					<input type="number" class="form-control col-3 ml-2" id="cantidad" name="cantidad" value="1">
-					<div class="col-4"></div>
-					<button type="button" id="total" class="btn btn-primary col-1">total</button>
-					<input type="text" class="form-control col-3" name="totalapagar" id="totalapagar" value="{{$producto->precio}}" readonly>
-				</div>
-				<div class="row mt-5">
-					<div class="col-4">
-						<label>Se pagó con:</label>
-						<input type="text" class="form-control" id="cpago" name="cpago" value="0">
-					</div>
-					<div class="col-3"></div>
-					<div class="col-4">
-						<label>Cambio:</label>
-						<input type="text" class="form-control" id="cambio" name="cambio" value="0" readonly>
-					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-10"></div>
-					<button type="submit" class="btn btn-success">comprar</button>
-				</div>
-			</form>
+			</div>
+			<center><a href="/nuevoreporte" class="btn btn-success mt-2">Generar nuevo reporte</a></center>
+			<input type="text" class="form-control mb-3 mt-5" name="buscador" id="idbuscador" placeholder="buscador">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">ganancias</th>
+						<th scope="col">cantidad de productos vendidos</th>
+						<th scope="col">fecha</th>
+						<th scope="col">suma de descuentos</th>
+					</tr>
+				</thead>
+				<tbody id="idbody">
+					@foreach($reportes as $rep)
+					<tr>
+						<td>{{$rep->reporte_ventas_id}}</td>
+						<td>{{$rep->ganancias}}</td>
+						<td>{{$rep->cantidad_productos}}</td>
+						<td>{{$rep->fecha}}</td>
+						<td>{{$rep->total_descuentos}}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-	$('document').ready(function(){
-		$('#total').on("click", function(){
-			var cantidad = $('#cantidad').val();
-			var precio = $('#precio').val();
-			var subtotal = cantidad * precio;
-			var inputacambiar = document.getElementById('totalapagar');
-			inputacambiar.value = subtotal;
-		});
-		$('#cpago').on("keyup", function(){
-			var pago = $('#cpago').val();
-			var subtotal = $('#totalapagar').val();
-			var inputcambio = document.getElementById('cambio');
-			inputcambio.value = pago - subtotal;
+	$(document).ready(function(){
+		$('#idbuscador').on("keyup", function(){
+			var value = $(this).val().toLowerCase();
+			$("#idbody tr").filter(function(){
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
 		});
 	});
 </script>

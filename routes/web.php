@@ -61,3 +61,7 @@ Route::post('/registrarProducto', 'controller@reg_prod');
 Route::get('/ventaproductos', 'controller@venderproductos');
 Route::get('/ordenventa/{id}', 'controller@ordenventa');
 Route::post('/productovendido', 'controller@productovendido');
+
+Route::get('/reporteventas', 'controller@reporte_ventas');
+Route::get('/nuevoreporte', 'controller@nuevoreporte');
+Route::get('/reporteproductos', 'controller@reporte_productos');

@@ -38,6 +38,17 @@
                   <a class="dropdown-item" href="/asistenciainstructores">Asistencia</a>
                 </div>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Ventas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/ventaproductos">Realizar ventas</a>
+                  <hr>
+                  <a class="dropdown-item" href="/reporteventas">Reporte_ventas</a>
+                  <a class="dropdown-item" href="/reporteproductos">Reporte_ventas</a>
+                </div>
+              </li>
             </ul>
           </div>
         </nav>

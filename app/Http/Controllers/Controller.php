@@ -53,6 +53,7 @@ class Controller extends BaseController
         $fecha = getdate();
         $mes = $fecha['mon'];
         $dia = $fecha['mday'];
+        $dia = $dia - 1;
         if ($mes < 10) {
             $mes = "0".$mes;
         }
@@ -62,5 +63,24 @@ class Controller extends BaseController
         $fechactual = $fecha['year']."-".$mes."-".$dia;
         DB::connection('mysql')->select("insert into orden_venta(productos_id,cantidad,fecha) values(".$id[0]->productos_id.",".$r->cantidad.",'".$fechactual."')");
         return $this->venderproductos();
+    }
+
+    function reporte_ventas(){
+        $reportes = DB::connection('mysql')->select("select * from reporte_diario_ventas");
+        $ultimoreporte = [];
+        foreach ($reportes as $rep) {
+            $ultimoreporte = $rep;
+        }
+        return view('reporte_diario_ventas', compact('reportes', 'ultimoreporte'));
+    }
+
+    function nuevoreporte(){
+        $prueba = DB::connection('mysql')->select("call reporte_ventas()");
+        return $this->reporte_ventas();
+    }
+
+    function reporte_productos(){
+        $reporte = DB::connection('mysql')->select('select * from reporte_diario_productos');
+        return view('reporte_diario_productos', compact('reporte'));
     }
 }
