@@ -157,6 +157,7 @@ class Instructorescontroller extends Controller
     	if ($dia < 10) {
     		$dia = "0".$dia;
     	}
+    	$dia = $dia - 1;
     	$fechactual = $fecha['year']."-".$mes."-".$dia;
     	$asistencia_instructores = Asistencias_instructores::all();
     	for ($i=0; $i < count($instructores); $i++) { 
@@ -184,6 +185,7 @@ class Instructorescontroller extends Controller
     	if ($dia < 10) {
     		$dia = "0".$dia;
     	}
+    	$dia = $dia - 1;
     	$fechactual = $fecha['year']."-".$mes."-".$dia;
     	$asistencia->fecha = $fechactual;
     	$asistencia->idinstructores = $id;
