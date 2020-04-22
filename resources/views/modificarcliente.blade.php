@@ -43,6 +43,7 @@
                   Ventas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                	<a class="dropdown-item" href="/productos">Alta Productos</a>
                   <a class="dropdown-item" href="/ventaproductos">Realizar ventas</a>
                   <hr>
                   <a class="dropdown-item" href="/reporteventas">Reporte_ventas</a>
