@@ -69,10 +69,10 @@
                         <div class="form-group">
                             {{csrf_field()}}
                             <label>Nombre de Producto</label>
-                            <input type="text" class="form-control" name="producto_nombre" id="producto_nombre">
+                            <input type="text" class="form-control" name="producto_nombre" id="producto_nombre" required>
                             <br>
                             <label for="comment">Precio</label>
-                            <input type="text" class="form-control" name="producto_precio" id="producto_precio"></input>
+                            <input type="text" class="form-control" name="producto_precio" id="producto_precio" required></input>
                             <br>
                             <button type="submit" class="btn btn-primary" name="name_button_crear_producto" id="id_button_crear_producto" >Registrar Producto</button>
                         </div>
@@ -86,25 +86,26 @@
                <div class="card-header">Modificar descuento de producto</div>
                     <div class="card-body">
                     <br>
-                    <form>
+                    <form method="POST" action="{{url("/descuentoProducto")}}">
                         <div class="form-group">
+                            {{csrf_field()}}
                             <label>Producto</label>
-                            <select class="form-control" id="desc_select_prod">
+                            <select name="producto_desc_id" class="form-control" id="producto_desc_id" required>
                                 @foreach ($productos as $producto)
                                     <option value="{{$producto->productos_id}}">{{$producto->nombre}}</option>
                                 @endforeach
                             </select>
                             <br>
                             <label for="comment">descuento</label>
-                            <input class="form-control" name="name_producto_descuento" id="id_producto_descuento"></input>
+                            <input class="form-control" name="producto_descuento" id="producto_descuento" required></input>
                             <br>
                             <label for="comment">Fecha de inicio de descuento</label>
-                            <input type="date" class="form-control" name="name_producto_fecha_in" id="id_producto_fecha_in"></input>
+                            <input type="date" class="form-control" name="producto_fecha_in" id="producto_fecha_in" required></input>
                             <br>
                             <label for="comment">Fecha de Finalizacion de descuento</label>
-                            <input type="date" class="form-control" name="name_producto_fecha_fin" id="id_producto_fecha_fin"></input>
+                            <input type="date" class="form-control" name="producto_fecha_fin" id="producto_fecha_fin" required></input>
                             <br>
-                            <button type="submit" class="btn btn-primary" name="name_button_mod_producto" id="id_button_crear_producto" >Aplicar cambios</button>
+                            <button type="submit" class="btn btn-primary" name="name_button_crear_desc" id="id_button_crear_desc" >Aplicar cambios</button>
                         </div>
                     </form>
                 </div>
@@ -147,7 +148,21 @@
 
     }); 
     $("#id_button_crear_producto").click(function(){
-        alert("se ha registrado el producto de manera exitosa");
+        var prod_nombre = $("#producto_nombre").val();
+        var prod_precio = $("#producto_precio").val();
+        if (prod_nombre.length != 0 && prod_precio.length != 0){
+             alert("se ha registrado el producto de manera exitosa");
+        }
+       
+    }); 
+
+    $("#id_button_crear_desc").click(function(){
+        var prod_descuento = $("#producto_descuento").val();
+        var prod_fecha_in = $("#producto_fecha_in").val();
+        var prod_fecha_fin = $("#producto_fecha_fin").val();
+        if (prod_descuento.length != 0 && prod_fecha_in.length != 0 && prod_fecha_fin.length != 0){
+             alert("se han guardado los cambios de manera exitosa");
+        }
     }); 
 
     $("#desc_select_prod").change(function(){

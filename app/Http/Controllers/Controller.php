@@ -39,6 +39,24 @@ class Controller extends BaseController
         return back()->withErrors(['El producto se registro correctamente']);
     }
 
+    function desc_prod(Request $desc){
+        $prod_desc_id = $desc->producto_desc_id;
+        $prod_descuento = $desc->producto_descuento;
+        $prod_f_in = $desc->producto_fecha_in;
+        $prod_f_fin = $desc->producto_fecha_fin;
+
+        $existe = DB::connection('mysql')->select('select porcentaje from descuentos where productos_id ="'.$prod_desc_id.'"');
+
+        if(count($existe) >= 1){
+            DB::connection('mysql')->update('update descuentos set porcentaje = ? , fechainicio = ?, fechavencimiento = ? where productos_id = ?',[$prod_descuento,$prod_f_in,$prod_f_fin,$prod_desc_id ]);
+        } else{
+            DB::connection('mysql')->select('insert into descuentos(porcentaje, fechainicio,fechavencimiento,productos_id) values("'.$prod_descuento.'","'.$prod_f_in.'","'.$prod_f_fin.'","'.$prod_desc_id.'")');
+        }
+        
+        return back()->withErrors(['El producto se registro correctamente']);
+    }
+
+
     function venderproductos(){
         $productos = DB::connection('mysql')->select('select productos.productos_id as productos_id, productos.nombre as nombre, if(descuentos.fechainicio-1 < date(now()) and descuentos.fechavencimiento+1 > date(now()), productos.precio - (descuentos.porcentaje/100 * productos.precio), productos.precio) as precio from productos left join descuentos on descuentos.productos_id = productos.productos_id');
         return view('productos.venta_productos', compact('productos'));

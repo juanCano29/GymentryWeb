@@ -57,6 +57,7 @@ Route::get('/asistioinstructor/{id}', 'Instructorescontroller@asistidoinstructor
 // routes de productos 
 Route::get('/productos', 'controller@productos');
 Route::post('/registrarProducto', 'controller@reg_prod');
+Route::post('/descuentoProducto', 'controller@desc_prod');
 
 //
 Route::get('/ventaproductos', 'controller@venderproductos');
