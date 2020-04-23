@@ -37,7 +37,6 @@ class clientescontroller extends Controller
 	  	$client->fecha_nac = $r->nacimiento;
 	   	$client->identificacion = $r->identificador;
 	   	$client->capital = $r->capital;
-    	$client->cod_qr = "sgre2542346asd";
 	    $client->direccion = $direcciones;
     	if($r->domestico != null){
     		if($r->celular != null){
