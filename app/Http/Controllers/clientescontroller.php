@@ -83,7 +83,7 @@ class clientescontroller extends Controller
         $cliente = Clientes::find($id);
         $direcciones = [];
         $arraydireccion = array('colonia' => $r->colonia, 'calle' => $r->calle, 'numero' => $r->numero);
-        for ($i=0; $i < count($cliente->direccion) ; $i++) { 
+        for ($i=0; $i < count($cliente->direccion) ; $i++) {
             if ($cliente->direccion[$i]['numero'] == $r->numero) {
                 $direcciones[$i] = $arraydireccion;
             }
@@ -123,7 +123,7 @@ class clientescontroller extends Controller
         $clientes = Clientes::find($id);
         $telefonos = [];
 
-        for ($i=0; $i < count($clientes->telefono); $i++) { 
+        for ($i=0; $i < count($clientes->telefono); $i++) {
             if($clientes->telefono[$i]['telefono'] == $numero){
                 if($r->telefono != null){
                     if($r->celular != null){
@@ -145,7 +145,7 @@ class clientescontroller extends Controller
         $tipos_clientes = $todoelcliente->tipos_clientes;
         return view('modificarcliente', compact('todoelcliente', 'tipos_clientes'));
     }
-    
+
     function actualizartodo(Request $r){
         $id = $_GET['id'];
         $direcciones = [];
@@ -158,7 +158,7 @@ class clientescontroller extends Controller
         $clientes->fecha_nac = $r->nacimiento;
         $clientes->capital = $r->capital;
         if ($r->colonia != null && $r->calle != null && $r->numero != null) {
-            for ($i=0; $i <= count($clientes->direccion); $i++) { 
+            for ($i=0; $i <= count($clientes->direccion); $i++) {
                 if($i<count($clientes->direccion)){
                     $arraydireccion = $clientes->direccion[$i];
                 }else{
@@ -172,7 +172,7 @@ class clientescontroller extends Controller
         }
         if($r->domestico != null){
             if($r->celular != null){
-                for ($i=0; $i <= count($clientes->telefono); $i++) { 
+                for ($i=0; $i <= count($clientes->telefono); $i++) {
                     if($i < count($clientes->telefono)){
                         $arraytelefono = $clientes->telefono[$i];
                     }else{
@@ -182,7 +182,7 @@ class clientescontroller extends Controller
                 }
                 $clientes->telefono = $telefonos;
             }else{
-                for ($i=0; $i <= count($clientes->telefono); $i++) { 
+                for ($i=0; $i <= count($clientes->telefono); $i++) {
                     if($i < count($clientes->telefono)){
                         $arraytelefono = $clientes->telefono[$i];
                     }else{
@@ -236,5 +236,13 @@ class clientescontroller extends Controller
             }
         }
         return view('sininstructor', compact('sininstructor'));
+    }
+    function statuscliente(){
+        return view('verificarestatus');
+    }
+    function verificador(Request $request){
+        $id = "".$request->input('id');
+        $cliente = Clientes::all()->where('idcliente','=',$id);
+        return  view('verificarestatus',compact('cliente'));
     }
 }

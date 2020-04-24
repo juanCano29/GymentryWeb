@@ -18,6 +18,8 @@ Route::get('/home', function () {
     return view('base');
 });
 
+
+
 // ejemplo consulta a mongo
 Route::get('/prueba', 'prueba@consulta1');
 
@@ -39,6 +41,10 @@ Route::get('/eliminarcliente/{id}', 'clientescontroller@eliminarcliente');
 Route::get('/clientesdesinstruidos', 'clientescontroller@clientesnoinstruidos');
 Route::get('/listadoinstructores/{id}', 'clientescontroller@listadoinstructores');
 Route::get('/clientesinstructores/{cli}/{inst}', 'clientescontroller@instructorcliente');
+Route::get('/verificarstatus', 'clientescontroller@statuscliente');
+Route::get('/verificar', 'clientescontroller@verificador');
+
+
 
 Route::get('/instructures_registro', function(){
 	return view('registro_instructores');
@@ -54,7 +60,7 @@ Route::get('/asistenciainstructores', 'Instructorescontroller@asistenciainstruct
 Route::get('/asistioinstructor/{id}', 'Instructorescontroller@asistidoinstructor');
 
 
-// routes de productos 
+// routes de productos
 Route::get('/productos', 'controller@productos');
 Route::post('/registrarProducto', 'controller@reg_prod');
 Route::post('/descuentoProducto', 'controller@desc_prod');
