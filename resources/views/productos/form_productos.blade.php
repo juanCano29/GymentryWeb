@@ -24,6 +24,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/clientes">Registrar</a>
+                  <a class="dropdown-item" href="/verificarstatus">Verificar estatus</a>
                   <a class="dropdown-item" href="/listaclientes">Editar / eliminar</a>
                   <a class="dropdown-item" href="/clientesdesinstruidos">Asignar instructor</a>
                 </div>
@@ -55,8 +56,8 @@
         </nav>
         <br>
         <div align="center">
-            <h1 class="display-4">Productos</h1> 
-        </div>       
+            <h1 class="display-4">Productos</h1>
+        </div>
         <br><br>
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col mb-4">
@@ -124,7 +125,7 @@
                       <th scope="col">Ganancias</th>
                       <th style="min-width: 15%" scope="col">Unidades vendidas</th>
                     </tr>
-                    
+
                   </thead>
                   <tbody>
                     <?php
@@ -132,7 +133,7 @@
                         echo "<tr>";
                             echo "<td>".$reporte->nombre."</td>";
                             echo "<td>".($reporte->uni_vend) * ($reporte->precio) ."</td>";
-                            echo "<td>".$reporte->uni_vend."</td>"; 
+                            echo "<td>".$reporte->uni_vend."</td>";
                         echo "</tr>";
                     }
                     ?>
@@ -146,15 +147,15 @@
     <script>
     $(document).ready(function(){
 
-    }); 
+    });
     $("#id_button_crear_producto").click(function(){
         var prod_nombre = $("#producto_nombre").val();
         var prod_precio = $("#producto_precio").val();
         if (prod_nombre.length != 0 && prod_precio.length != 0){
              alert("se ha registrado el producto de manera exitosa");
         }
-       
-    }); 
+
+    });
 
     $("#id_button_crear_desc").click(function(){
         var prod_descuento = $("#producto_descuento").val();
@@ -163,12 +164,12 @@
         if (prod_descuento.length != 0 && prod_fecha_in.length != 0 && prod_fecha_fin.length != 0){
              alert("se han guardado los cambios de manera exitosa");
         }
-    }); 
+    });
 
     $("#desc_select_prod").change(function(){
         var id = $(this).val();
         alert(id);
-    }); 
+    });
 
 </script>
 </html>

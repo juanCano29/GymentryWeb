@@ -24,6 +24,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/clientes">Registrar</a>
+                <a class="dropdown-item" href="/verificarstatus">Verificar estatus</a>
                   <a class="dropdown-item" href="/listaclientes">Editar / eliminar</a>
                   <a class="dropdown-item" href="/clientesdesinstruidos">Asignar instructor</a>
                 </div>
