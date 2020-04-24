@@ -238,7 +238,8 @@ class clientescontroller extends Controller
         return view('sininstructor', compact('sininstructor'));
     }
     function statuscliente(){
-        return view('verificarestatus');
+        $cliente = [];
+        return view('verificarestatus', compact('cliente'));
     }
     function verificador(Request $request){
         $id = "".$request->input('id');
